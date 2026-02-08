@@ -59,11 +59,22 @@
         }
       });
 
-      goBtn.addEventListener("click", () => {
-        if (!loggedIn) return;
-        window.location.href = "/static/register.html";
-      });
+     goBtn.addEventListener("click", async () => {
+  if (!loggedIn) return;
 
+  goBtn.disabled = true;
+  statusEl.textContent = "상품등록 페이지로 이동 중...";
+
+  try {
+    const res = await fetch("/api/go-register", { method: "POST" });
+    if (!res.ok) throw new Error();
+
+    statusEl.textContent = "✅ 상품관리 > 상품등록 화면으로 이동했습니다.";
+  } catch (e) {
+    statusEl.textContent = "❌ 이동 실패. 스마트스토어 창 상태를 확인하세요.";
+    goBtn.disabled = false;
+  }
+});
       render();
     </script>
   </body>

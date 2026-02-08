@@ -3,7 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 import threading
 
-from selenium_runner import open_smartstore, check_logged_in
+from selenium_runner import open_smartstore, check_logged_in, go_product_register  # ✅ 추가
+
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static", html=True), name="static")
@@ -20,3 +21,8 @@ def api_open():
 @app.post("/api/check-login")
 def api_check():
     return {"logged_in": check_logged_in()}
+
+@app.post("/api/go-register")
+def api_go_register():
+    go_product_register()
+    return {"ok": True}

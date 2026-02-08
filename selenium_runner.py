@@ -37,6 +37,28 @@ def open_smartstore() -> None:
     d = get_driver()
     d.get(SMARTSTORE_URL)
 
+def go_product_register() -> None:
+    d = get_driver()
+
+    wait = WebDriverWait(d, 15)
+
+    # 1️⃣ 좌측 메뉴: 상품관리 클릭
+    product_manage = wait.until(
+        EC.element_to_be_clickable((
+            By.XPATH,
+            "//a[.//span[normalize-space()='상품관리']]"
+        ))
+    )
+    product_manage.click()
+
+    # 2️⃣ 서브 메뉴: 상품 등록 클릭
+    product_register = wait.until(
+        EC.element_to_be_clickable((
+            By.XPATH,
+            "//a[normalize-space()='상품 등록']"
+        ))
+    )
+    product_register.click()
 
 def check_logged_in() -> bool:
     d = get_driver()
@@ -48,5 +70,10 @@ def check_logged_in() -> bool:
             )
         )
         return True
+    
+    
+    
     except TimeoutException:
         return False
+    
+    
