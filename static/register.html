@@ -9,8 +9,123 @@
   <body>
     <main class="wrap">
       <h1>상품등록</h1>
-      <p>여기서 상품등록 폼을 만들면 됩니다.</p>
+      <p>품번을 입력하고 버튼을 누르면 품번 체계를 식별합니다. (8자리 고정)</p>
+
+      <label>
+        품번 입력 (예: DMU26101)
+        <div style="display:flex; gap:10px; align-items:center;">
+          <input
+            id="sku"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            placeholder="예) DMU26101"
+            maxlength="8"
+            style="flex:1;"
+          />
+          <button id="btnDetect" type="button" style="width:auto; padding:12px 16px;">
+            식별
+          </button>
+        </div>
+      </label>
+
+      <label>
+        상품명
+        <input
+          id="productName"
+          type="text"
+          autocomplete="off"
+          placeholder="식별 후 자동 생성됩니다. (직접 수정 가능)"
+        />
+      </label>
+
+      <label>
+        상품군
+        <input
+          id="productGroup"
+          type="text"
+          autocomplete="off"
+          placeholder="식별 후 자동 생성됩니다. (직접 수정 가능)"
+        />
+      </label>
+
+      <label>
+        카테고리(네이버)
+        <input
+          id="categoryQuery"
+          type="text"
+          autocomplete="off"
+          placeholder="예) 스포츠/레저>등산>등산의류>재킷"
+        />
+      </label>
+
+      <label id="teeTypeWrap" style="display:none;">
+        티셔츠 종류
+        <select id="teeType">
+          <option value="long">긴팔티셔츠</option>
+          <option value="short">반팔티셔츠</option>
+        </select>
+      </label>
+
+      <button id="btnApplyCategory" class="btn" type="button">
+        네이버 카테고리 적용
+      </button>
+
+      <hr style="border:0; border-top:1px solid rgba(255,255,255,.12); margin:14px 0;" />
+
+      <label>
+        판매가
+        <input
+          id="priceOriginal"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="예) 129000"
+        />
+      </label>
+
+      <label>
+        할인가
+        <input
+          id="priceSale"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="예) 99000"
+        />
+      </label>
+
+      <label>
+        차액금액
+        <input
+          id="priceDiff"
+          type="text"
+          readonly
+          tabindex="-1"
+          placeholder="자동 계산됩니다."
+        />
+      </label>
+
+      <label>
+        원산지
+        <input
+          id="originCountry"
+          type="text"
+          autocomplete="off"
+          placeholder="예) 대한민국 / 중국 / 베트남"
+        />
+      </label>
+
+      <label>
+        제조일자
+        <input id="manufactureDate" type="date" />
+      </label>
+
+      <pre id="result" class="status" aria-live="polite">결과가 여기에 표시됩니다.</pre>
+
       <a class="link" href="/static/next.html">← 로그인 확인으로</a>
     </main>
+
+    <script src="/static/register.js"></script>
   </body>
 </html>
